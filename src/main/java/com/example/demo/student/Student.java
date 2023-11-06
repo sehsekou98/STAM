@@ -28,6 +28,36 @@ public class Student {
     )
     private String department;
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "email='" + email + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(email, student.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
+
     @Column(
             nullable = false
     )
@@ -70,36 +100,14 @@ public class Student {
     }
 
 
-    public Student( String name, String department, long idNumber) {
+    public Student( String name, String department, String email, long idNumber) {
         this.name = name;
         this.department = department;
         this.idNumber = idNumber;
+        this.email = email;
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(department, student.department) && Objects.equals(idNumber, student.idNumber);
+    public void add(Student student) {
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, department, idNumber);
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", department='" + department + '\'' +
-                ", idNumber=" + idNumber +
-                '}';
-    }
-
 }

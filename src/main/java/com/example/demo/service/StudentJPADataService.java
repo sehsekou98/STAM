@@ -27,4 +27,15 @@ public class StudentJPADataService implements StudentDb {
     public Optional<Student> selectStudentById(Integer id) {
         return studentRepository.findById(id);
     }
+
+    @Override
+    public boolean existsPersonWithIdNumber(long idNumber) {
+        return studentRepository.existsStudentByIdNumber(idNumber);
+    }
+
+    @Override
+    public void insertStudent(Student student) {
+        studentRepository.save(student);
+
+    }
 }

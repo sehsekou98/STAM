@@ -19,12 +19,14 @@ public class StudentDataAccessService implements StudentDb {
 
                 "John Doe",
                 "SMIA",
+                "doe@gmail.com",
                 12345L
         );
-        Student sekou = new Student(
+        Student john = new Student(
 
                 "John Flomo",
                 "SMIA",
+                "john@gmail.com",
                 12345L
         );
 
@@ -44,6 +46,20 @@ public class StudentDataAccessService implements StudentDb {
                 .findFirst();
 
     }
+
+    @Override
+    public boolean existsPersonWithIdNumber(long idNumber) {
+        return students.stream().anyMatch(
+                s -> s.getIdNumber()
+                        .equals(idNumber)
+        );
+    }
+
+    public void insertStudent(Student student) {
+        student.add(student);
+    }
+
+
 
 
 

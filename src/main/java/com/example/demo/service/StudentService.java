@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.student.Student;
 import com.example.demo.student.StudentDb;
+import com.example.demo.student.StudentRegistrationRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,26 @@ public class StudentService {
                         .formatted(id))
         );
     }
+
+    public void addStudent (StudentRegistrationRequest studentRegistrationRequest){
+        // check is email exist.
+        Long idNumber = Long.valueOf(studentRegistrationRequest.idNumber());
+        if (studentDb.existsPersonWithIdNumber(idNumber)) {
+            throw new RuntimeException("Id Numbers taken"
+            );
+        }
+
+        // add student
+
+        Student student = new Student(
+                studentRegistrationRequest.name(),
+                studentRegistrationRequest.department(),
+                studentRegistrationRequest.email(),
+                studentRegistrationRequest.idNumber()
+        );
+        studentDb.insertStudent(student);
+
+    }
+
 }
 

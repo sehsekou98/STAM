@@ -22,14 +22,16 @@ public class Main {
 		return args -> {
 			Student mary = new Student(
 
-					"Mary John",
+					"John Flomo",
 					"SMIA",
+					"john@gmail.com",
 					12345L
 			);
 			Student sekou = new Student(
 
 					"Mary John",
 					"SMIA",
+					"mary@gmail.com",
 					12345L
 			);
 			List<Student> students = List.of(mary, sekou);

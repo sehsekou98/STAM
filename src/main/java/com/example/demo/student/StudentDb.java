@@ -7,4 +7,7 @@ public interface StudentDb {
      List<Student> selectAllStudents();
     Optional<Student> selectStudentById(Integer id);
 
+    boolean existsPersonWithIdNumber(long idNumber);
+
+    void insertStudent(Student student);
 }
