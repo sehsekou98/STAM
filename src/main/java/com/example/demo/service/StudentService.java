@@ -45,7 +45,7 @@ public class StudentService {
             throw new RuntimeException("Email already taken."
             );
 
-
+        }
             // add student
 
             Student student = new Student(
@@ -57,6 +57,6 @@ public class StudentService {
             studentDb.insertStudent(student);
 
         }
-    }
+
 }
 

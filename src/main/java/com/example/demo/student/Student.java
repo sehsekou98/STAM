@@ -56,6 +56,9 @@ public class Student {
         this.email = email;
     }
 
+    @Column(
+            nullable = false
+    )
     private String email;
 
     @Column(
