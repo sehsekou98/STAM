@@ -10,4 +10,6 @@ public interface StudentDb {
     boolean existsPersonWithIdNumber(long idNumber);
 
     void insertStudent(Student student);
+
+    boolean existsPersonWithEmail(String email);
 }

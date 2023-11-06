@@ -38,4 +38,9 @@ public class StudentJPADataService implements StudentDb {
         studentRepository.save(student);
 
     }
+
+    @Override
+    public boolean existsPersonWithEmail(String email) {
+        return studentRepository.existsStudentByEmail(email);
+    }
 }

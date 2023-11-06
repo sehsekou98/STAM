@@ -28,25 +28,35 @@ public class StudentService {
         );
     }
 
-    public void addStudent (StudentRegistrationRequest studentRegistrationRequest){
-        // check is email exist.
+    //check if email exist
+
+
+    public void addStudent (StudentRegistrationRequest studentRegistrationRequest) {
+        // check if id exist.
         Long idNumber = Long.valueOf(studentRegistrationRequest.idNumber());
         if (studentDb.existsPersonWithIdNumber(idNumber)) {
-            throw new RuntimeException("Id Numbers taken"
+            throw new RuntimeException("Id Number's taken"
             );
+
         }
 
-        // add student
+        String email = studentRegistrationRequest.email();
+        if (studentDb.existsPersonWithEmail(email)) {
+            throw new RuntimeException("Email already taken."
+            );
 
-        Student student = new Student(
-                studentRegistrationRequest.name(),
-                studentRegistrationRequest.department(),
-                studentRegistrationRequest.email(),
-                studentRegistrationRequest.idNumber()
-        );
-        studentDb.insertStudent(student);
 
+            // add student
+
+            Student student = new Student(
+                    studentRegistrationRequest.name(),
+                    studentRegistrationRequest.department(),
+                    studentRegistrationRequest.email(),
+                    studentRegistrationRequest.idNumber()
+            );
+            studentDb.insertStudent(student);
+
+        }
     }
-
 }
 

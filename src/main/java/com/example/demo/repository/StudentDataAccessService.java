@@ -59,8 +59,12 @@ public class StudentDataAccessService implements StudentDb {
         student.add(student);
     }
 
-
-
+    @Override
+    public boolean existsPersonWithEmail(String email) {
+        return students.stream().anyMatch(
+                s-> s.getEmail().equals(email)
+        );
+    }
 
 
 }

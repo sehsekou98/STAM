@@ -2,10 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.student.Student;
 import com.example.demo.service.StudentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.student.StudentRegistrationRequest;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +26,12 @@ public class StudentController {
     public Student getStudent(
         @PathVariable("studentId") Integer studentId ) {
         return studentService.getStudent(studentId);
+    }
+
+    @PostMapping
+    public void registerStudent(
+            @RequestBody StudentRegistrationRequest request) {
+        studentService.addStudent(request);
     }
 
 
