@@ -20,5 +20,11 @@ public class StudentService {
         return studentDb.selectAllStudents();
     }
 
+    public Student getStudent(Integer id) {
+        return studentDb.selectStudentById(id).orElseThrow(
+                () -> new RuntimeException("Student with id [%s] not fount"
+                        .formatted(id))
+        );
+    }
 }
 
