@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.student.Student;
 import com.example.demo.student.StudentDb;
 import com.example.demo.student.StudentRegistrationRequest;
+import com.example.demo.student.StudentUpdateRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +66,12 @@ public class StudentService {
             );
         }
             studentDb.deleteStudentById(studentId);
+        }
+
+        public void updateStudent(Integer studentId, StudentUpdateRequest updateRequest) {
+        Student student = getStudent(studentId);
+
+        boolean changes = false;
         }
 
 }
