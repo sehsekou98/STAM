@@ -16,4 +16,6 @@ public interface StudentDb {
     boolean existsPersonWithId(Integer id);
 
     void deleteStudentById(Integer studentId);
+
+    void updateStudent(Student update);
 }

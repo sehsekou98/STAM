@@ -53,4 +53,9 @@ public class StudentJPADataService implements StudentDb {
     public void deleteStudentById(Integer studentId) {
         studentRepository.existsStudentById(studentId);
     }
+
+    @Override
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
+    }
 }

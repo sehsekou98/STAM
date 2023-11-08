@@ -72,7 +72,32 @@ public class StudentService {
         Student student = getStudent(studentId);
 
         boolean changes = false;
-        }
+
+        if(updateRequest.name() != null && !updateRequest.name().equals(student.getName())) {
+            student.setName(updateRequest.name());
+            studentDb.insertStudent(student);
+            changes = true;
+    }
+
+            if(updateRequest.email() != null && !updateRequest.email().equals(student.getEmail())) {
+                student.setEmail(updateRequest.email());
+                studentDb.insertStudent(student);
+                changes = true;
+            }
+
+            if(updateRequest.department() != null && !updateRequest.department().equals(student.getDepartment())) {
+                student.setDepartment(updateRequest.department());
+                studentDb.insertStudent(student);
+                changes = true;
+            }
+
+            if(updateRequest.idNumber() != null && !updateRequest.idNumber().equals(student.getIdNumber())) {
+                student.setIdNumber(Math.toIntExact(updateRequest.idNumber()));
+                studentDb.insertStudent(student);
+                changes = true;
+            }
+
+    }
 
 }
 

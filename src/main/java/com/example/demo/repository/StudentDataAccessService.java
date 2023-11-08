@@ -83,5 +83,11 @@ public class StudentDataAccessService implements StudentDb {
                 .ifPresent(students::remove);
     }
 
+    @Override
+    public void updateStudent(Student student) {
+        students.add(student);
+    }
+
+
 
 }
