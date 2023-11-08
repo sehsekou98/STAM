@@ -66,5 +66,22 @@ public class StudentDataAccessService implements StudentDb {
         );
     }
 
+    @Override
+    public boolean existsPersonWithId(Integer id) {
+        return students.stream()
+                .anyMatch( s->s.getId().equals(id)
+
+        );
+    }
+
+    @Override
+    public void deleteStudentById(Integer studentId) {
+        students.stream()
+                .filter(s->s.getId()
+                        .equals(studentId))
+                .findFirst()
+                .ifPresent(students::remove);
+    }
+
 
 }

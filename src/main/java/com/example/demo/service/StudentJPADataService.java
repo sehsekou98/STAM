@@ -43,4 +43,14 @@ public class StudentJPADataService implements StudentDb {
     public boolean existsPersonWithEmail(String email) {
         return studentRepository.existsStudentByEmail(email);
     }
+
+    @Override
+    public boolean existsPersonWithId(Integer id) {
+        return studentRepository.existsStudentById(id);
+    }
+
+    @Override
+    public void deleteStudentById(Integer studentId) {
+        studentRepository.existsStudentById(studentId);
+    }
 }

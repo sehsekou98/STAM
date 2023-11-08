@@ -12,4 +12,8 @@ public interface StudentDb {
     void insertStudent(Student student);
 
     boolean existsPersonWithEmail(String email);
+
+    boolean existsPersonWithId(Integer id);
+
+    void deleteStudentById(Integer studentId);
 }

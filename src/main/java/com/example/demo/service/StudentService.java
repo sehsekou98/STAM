@@ -58,5 +58,14 @@ public class StudentService {
 
         }
 
+        public void deleteStudentById(Integer studentId) {
+        if (!studentDb.existsPersonWithId(studentId)) {
+            throw new RuntimeException(
+                    "Student with id [%s] not found".formatted(studentId)
+            );
+        }
+            studentDb.deleteStudentById(studentId);
+        }
+
 }
 
