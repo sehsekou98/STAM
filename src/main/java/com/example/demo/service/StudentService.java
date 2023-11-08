@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.DuplicateResourceException;
+import com.example.demo.exception.ResourceNotFound;
 import com.example.demo.student.Student;
 import com.example.demo.student.StudentDb;
 import com.example.demo.student.StudentRegistrationRequest;
@@ -24,7 +26,7 @@ public class StudentService {
 
     public Student getStudent(Integer id) {
         return studentDb.selectStudentById(id).orElseThrow(
-                () -> new RuntimeException("Student with id [%s] not fount"
+                () -> new ResourceNotFound("Student with id [%s] not fount"
                         .formatted(id))
         );
     }
@@ -36,14 +38,14 @@ public class StudentService {
         // check if id exist.
         Long idNumber = Long.valueOf(studentRegistrationRequest.idNumber());
         if (studentDb.existsPersonWithIdNumber(idNumber)) {
-            throw new RuntimeException("Id Number's taken"
+            throw new DuplicateResourceException("Id Number's taken"
             );
 
         }
 
         String email = studentRegistrationRequest.email();
         if (studentDb.existsPersonWithEmail(email)) {
-            throw new RuntimeException("Email already taken."
+            throw new DuplicateResourceException("Email already taken."
             );
 
         }
@@ -61,7 +63,7 @@ public class StudentService {
 
         public void deleteStudentById(Integer studentId) {
         if (!studentDb.existsPersonWithId(studentId)) {
-            throw new RuntimeException(
+            throw new ResourceNotFound(
                     "Student with id [%s] not found".formatted(studentId)
             );
         }
