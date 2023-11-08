@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.student.Student;
 import com.example.demo.service.StudentService;
 import com.example.demo.student.StudentRegistrationRequest;
+import com.example.demo.student.StudentUpdateRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +35,18 @@ public class StudentController {
         studentService.addStudent(request);
     }
 
+   @DeleteMapping("{studentId}")
+    public void deleteStudent(
+            @PathVariable("studentId") Integer studentId) {
+        studentService.deleteStudentById(studentId);
+   }
+
+   @PutMapping("{studentId}")
+    public void deleteStudent(
+           @PathVariable("studentId") Integer studentId,
+           @RequestBody StudentUpdateRequest updateRequest) {
+        studentService.updateStudent(studentId, updateRequest);
+   }
 
 
 }
