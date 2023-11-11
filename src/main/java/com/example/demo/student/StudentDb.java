@@ -18,4 +18,5 @@ public interface StudentDb {
     void deleteStudentById(Integer studentId);
 
     void updateStudent(Student update);
+
 }

@@ -11,7 +11,7 @@ import java.util.Objects;
         uniqueConstraints = {
                @UniqueConstraint(
                        name = "student_idNumber_unique",
-                       columnNames = "idnumber"
+                       columnNames = "idNumber"
 
                ),
 
@@ -23,11 +23,11 @@ import java.util.Objects;
 
 )
 public class Student {
-
     @Id
     @SequenceGenerator(
             name = "student_id_seq",
-            sequenceName = "student_id_seq"
+            sequenceName = "student_id_seq",
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -43,6 +43,8 @@ public class Student {
             nullable = false
     )
     private String department;
+
+    public Student() {}
 
     @Override
     public String toString() {
@@ -82,7 +84,7 @@ public class Student {
     )
     private long idNumber;
 
-    public Student() {
+    public Student(int id, String name, String email, String department, long idNumber) {
 
     }
 
