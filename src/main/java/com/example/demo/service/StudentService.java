@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.exception.DuplicateResourceException;
+import com.example.demo.exception.RequestValidationException;
 import com.example.demo.exception.ResourceNotFound;
 import com.example.demo.student.Student;
 import com.example.demo.student.StudentDb;
@@ -77,29 +78,40 @@ public class StudentService {
 
         if(updateRequest.name() != null && !updateRequest.name().equals(student.getName())) {
             student.setName(updateRequest.name());
-            studentDb.insertStudent(student);
             changes = true;
     }
 
-            if(updateRequest.email() != null && !updateRequest.email().equals(student.getEmail())) {
-                student.setEmail(updateRequest.email());
-                studentDb.insertStudent(student);
-                changes = true;
-            }
+            if(updateRequest.email() != null && !updateRequest.email().equals(student.getEmail()))
+             if (studentDb.existsPersonWithEmail(updateRequest.email())){
+                    throw new DuplicateResourceException(
+                            "email already taken."
+                    );
+                }
+            student.setEmail(updateRequest.email());
+                   changes = true;
+
 
             if(updateRequest.department() != null && !updateRequest.department().equals(student.getDepartment())) {
                 student.setDepartment(updateRequest.department());
-                studentDb.insertStudent(student);
                 changes = true;
             }
 
-            if(updateRequest.idNumber() != null && !updateRequest.idNumber().equals(student.getIdNumber())) {
-                student.setIdNumber(Math.toIntExact(updateRequest.idNumber()));
-                studentDb.insertStudent(student);
-                changes = true;
-            }
+            if(updateRequest.idNumber() != null && !updateRequest.idNumber().equals(student.getIdNumber()))
+              if (studentDb.existsPersonWithIdNumber(updateRequest.idNumber())) {
+                  throw new DuplicateResourceException(
+                          "id number is taken"
+                  );
 
+              }
+            student.setIdNumber(Math.toIntExact(updateRequest.idNumber()));
+               changes = true;
+
+            if (!changes) {
+                throw new RequestValidationException("no data change found");
+            }
     }
+
+
 
 }
 
