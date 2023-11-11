@@ -5,9 +5,9 @@ error:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/student
+    url: jdbc:postgresql://localhost:5433/student
     username: sehsekou98
-    password: passworl1
+    password: password
   jpa:
     hibernate:
       ddl-auto: create-drop

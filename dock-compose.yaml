@@ -5,11 +5,11 @@ services:
     image: postgres
     environment:
       POSTGRES_USER: sehsekou98
-      POSTGRES_PASSWORD: passworl1
+      POSTGRES_PASSWORD: password
     volumes:
       - db:/data/postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - db
     restart: unless-stopped

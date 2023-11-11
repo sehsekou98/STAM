@@ -35,7 +35,7 @@ public class Main {
 					12345L
 			);
 			List<Student> students = List.of(mary, sekou);
-			studentRepository.saveAll(students);
+			//studentRepository.saveAll(students);
 		};
 	}
 
